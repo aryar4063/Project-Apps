@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up - BeautifulKost</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* 1. Global Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    /* 2. Container Kartu */
+    .container {
+      width: 100%;
+      max-width: 400px;
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+
+    /* 3. Logo Style */
+    .logo-brand {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 25px;
+      letter-spacing: -1px;
+      color: #000;
+    }
+    .logo-brand span {
+      font-weight: 300;
+      color: #666;
+    }
+
+    /* 4. Tipografi */
+    h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #1a1a1a;
+    }
+    .subtitle {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 30px;
+      line-height: 1.5;
+    }
+
+    /* 5. Form Input */
+    input {
+      width: 100%;
+      padding: 14px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      margin-bottom: 15px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+    input:focus {
+      outline: none;
+      border-color: #000;
+      box-shadow: 0 0 0 4px rgba(0,0,0,0.05);
+    }
+
+    /* 6. Tombol Utama */
+    .btn-primary {
+      width: 100%;
+      padding: 14px;
+      background: #000;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.1s;
+    }
+    .btn-primary:hover {
+      background: #333;
+    }
+    .btn-primary:active {
+      transform: scale(0.98);
+    }
+
+    /* 7. Divider */
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 25px 0;
+      color: #999;
+      font-size: 13px;
+    }
+    .divider::before, .divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: #eee;
+    }
+    .divider span { margin: 0 15px; }
+
+    /* 8. Tombol Social */
+    .btn-social {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #eee;
+      background: #fff;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-social:hover {
+      background: #f9f9f9;
+      border-color: #ddd;
+    }
+    .btn-social img { width: 18px; height: 18px; }
+
+    /* 9. Footer & Link */
+    .footer-text {
+      font-size: 12px;
+      color: #888;
+      margin-top: 25px;
+      line-height: 1.6;
+    }
+    .footer-text a {
+      color: #000;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .login-link {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="logo-brand">
+      Beautiful<span>Kost</span>
+    </div>
+
+    <h2>Buat akun Anda</h2>
+    <p class="subtitle">Masukkan alamat email Anda untuk mendaftar ke aplikasi ini</p>
+
+    <input id="email" type="email" placeholder="email@domain.com" required />
+    <button class="btn-primary" onclick="lanjut()">Lanjutkan</button>
+
+    <div class="divider"><span>or</span></div>
+
+    <button class="btn-social">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" alt="Google"/>
+      Lanjutkan dengan Google
+    </button>
+
+    <button class="btn-social">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple"/>
+      Lanjutkan dengan Apple
+    </button>
+
+    <div class="login-link">
+      Sudah punya akun? <a href="#">Masuk di sini</a>
+    </div>
+
+    <div class="footer-text">
+      Dengan mengklik "Lanjutkan", Anda menyetujui <br>
+      <a href="#">Ketentuan Layanan</a> dan <a href="#">Kebijakan Privasi</a> kami
+    </div>
+  </div>
+
+  <script>
+      function lanjut() {
+        const emailInput = document.getElementById("email").value.trim();
+        const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,}$/i;
+
+        if (emailInput === "") {
+          alert("Silakan masukkan email terlebih dahulu!");
+          return;
+        }
+
+        if (!emailPattern.test(emailInput)) {
+          alert("Format email tidak valid!");
+          return;
+        }
+
+        // Ambil nama depan dari email (contoh: budi@gmail.com jadi Budi)
+        let namaUser = emailInput.split('@')[0];
+        namaUser = namaUser.charAt(0).toUpperCase() + namaUser.slice(1);
+
+        // Simpan ke memori browser
+        localStorage.setItem("namaPengguna", namaUser);
+
+        // PINDAH KE DASHBOARD
+        window.location.href = "dashboardtest.html";
+      }
+    </script>
+</body>
+
+  
+</body>
+</html>
